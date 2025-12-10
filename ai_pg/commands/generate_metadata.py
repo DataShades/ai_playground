@@ -12,7 +12,6 @@ from ollama import ResponseError
 
 OLLAMA_BASE_URL = "http://localhost:11434"
 OLLAMA_MODEL = "qwen3:8b"
-# OLLAMA_MODEL = "qwen2.5:7b-instruct"
 OLLAMA_TIMEOUT = 120.0  # Low timeout will lead to failed requests
 OLLAMA_THINKING = False
 # Temperature controls randomness of outputs
@@ -49,7 +48,7 @@ def sync(func):
     return wrapper
 
 
-@click.command()
+@click.command(name="generate-metadata")
 @click.option("-f", "--filename", type=str, required=True)
 @sync
 async def generate_metadata(filename: str) -> None:
