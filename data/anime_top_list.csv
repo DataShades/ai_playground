@@ -1,0 +1,109 @@
+title,rating,episodes,studio,year,genre,has_watched
+Attack on Titan,9.01,75,Mappa,2013,Action,True
+Death Note,9.04,37,Madhouse,2006,Thriller,True
+Fullmetal Alchemist: Brotherhood,9.09,64,Bones,2009,Fantasy,True
+One Piece,8.99,1000+ Toonami,1999,Adventure,True
+Naruto,8.79,220,Pierrot,2002,Action,True
+Bleach,7.95,366,Studio Pierrot,2004,Slice of Life,False
+Dragon Ball Z,8.78,291,Toei Animation,1989,Action,True
+My Hero Academia,8.42,114,Bones,2016,Action,True
+Jujutsu Kaisen,8.61,47,Mappa,2020,Action,True
+Demon Slayer,8.72,44,Ufotable,2019,Fantasy,True
+Cowboy Bebop,9.03,26,Sunrise,1998,Crime,True
+Spirited Away,9.31,1,Studio Ghibli,2001,Fantasy,True
+One Punch Man,8.53,24,Studio Madhouse,2015,Comedy,True
+Tokyo Ghoul,7.81,24,Pierrot,2014,Horror,False
+Fairy Tail,7.98,175,A-1 Pictures,2009,Fantasy,True
+Hunter x Hunter,9.06,148,Madhouse,2011,Action,True
+Neon Genesis Evangelion,8.42,26,Gainax,1995,Drama,True
+Code Geass,8.68,50,Sunrise,2006,Mecha,True
+Steins;Gate,9.09,24,White Fox,2011,Sci-Fi,True
+Akudama Drive,7.85,12,Pierrot,2020,Crime,True
+The Promised Neverland,8.38,23,Anime R,2019,Thriller,True
+Psycho-Pass,8.34,22,Production I.G,2012,Crime,True
+Your Name,8.84,1,Centre,2016,Romance,True
+Weathering With You,7.78,1,Centre,2019,Romance,True
+Made in Abyss,8.78,13,Kinema Citrus,2017,Adventure,True
+The Garden of Sinners,7.93,8,Ufotable,2007,Fantasy,True
+Vinland Saga,8.83,24,Mappa,2019,Historical,True
+Dr. Stone,7.96,48,TMS Entertainment,2019,Sci-Fi,True
+Haikyuu!!,8.64,75,Production I.G,2014,Sports,True
+The Rising of the Shield Hero,7.51,25,Studio Kimn,2019,Fantasy,True
+Mob Psycho 100,8.94,39,Bones,2016,Action,True
+Overlord,7.87,25,Madhouse,2015,Isekai,True
+Re:Zero,8.72,50,White Fox,2016,Isekai,True
+The Melancholy of Haruhi Suzumiya,8.19,28,Kyoto Animation,2006,Comedy,True
+Clannad,8.08,23,Kyoto Animation,2007,Romance,True
+K-On!,8.21,25,Kyoto Animation,2009,Music,True
+Gintama,8.64,367,Sunrise,2006,Comedy,True
+Gurren Lagann,8.76,27,Gainax,2007,Mecha,True
+Kaguya-sama: Love Is War,8.48,24,A-1 Pictures,2019,Romance,True
+The Tatami Galaxy,8.47,11,Madhouse,2010,Romance,True
+Komi Can't Communicate,7.92,12,OLM,2021,School,True
+My Dress-Up Darling,7.71,12,Toy Box,2022,Romance,True
+Kaguya-sama: Love Is War - Ultra Romantic,8.15,12,A-1 Pictures,2022,Romance,True
+Chainsaw Man,8.52,12,Mappa,2022,Action,True
+My Hero Academia - Two Heroes,7.47,1,Bones,2018,Action,True
+Demon Slayer - Mugen Train,8.32,1,Ufotable,2020,Action,True
+Akira,8.47,1,TMS Entertainment,1988,Mecha,True
+Ghost in the Shell,8.03,26,Production I.G,1995,Cyberpunk,True
+Sailor Moon,8.14,200,Toei Animation,1992,Magic,True
+Rurouni Kenshin,8.31,94,Studio Gallop,1996,Action,True
+Great Teacher Onizuka,8.45,43,Toei Animation,1998,School,True
+Parasyte - The Maxim,8.07,24,Madhouse,2014,Horror,True
+Food Wars!,8.22,37,J.C.Staff,2015,Comedy,True
+Cells at Work!,7.94,13,Liden Films,2018,Educational,True
+A Silent Voice,8.77,1,Kyoto Animation,2016,Drama,True
+Your Name - Sequel,0.0,1,Centre,2026,Romance,False
+Berserk,8.92,24,Studio 4°C,1997,Fantasy,True
+Samurai Champloo,8.73,26,Fuji Television,2004,Capoeira,True
+Baccano!,8.12,16,Brain's Base,2007,Fantasy,True
+Toradora!,8.24,25,J.C.Staff,2008,Romance,True
+Suzume,7.89,1,CoMix Wave Films,2022,Fantasy,True
+March Comes in Like a Lion,7.95,22,Shaft,2016,Drama,True
+Boruto: Naruto Next Generations,7.06,297,Studios,2017,Action,True
+Dandadan,8.12,12,CloverWorks,2024,Comedy,True
+Yashahime: Princess Half-Demon,7.11,48,Sunrise,2020,Action,True
+Yuki Yuna Is a Hero,7.84,36,Tokyo Kids,2014,Fantasy,True
+The Disastrous Life of Saiki K.,8.51,12,J.C.Staff,2016,Comedy,True
+No Game No Life,8.09,12,Madhouse,2014,Isekai,True
+Yuru Camp,8.21,12,C-Station,2018,Slice of Life,True
+Lucky Star,7.96,24,Kyoto Animation,2007,Comedy,True
+Laid-Back Camp Season 3,8.15,12,C-Station,2024,Slice of Life,True
+Kaguya-sama: Love Is War Season 4,7.92,24,A-1 Pictures,2025,Romance,False
+The Devil is a Part-Timer!,8.03,24,White Fox,2013,Comedy,True
+Miss Kobayashi's Dragon Maid,8.22,13,Kyoto Animation,2017,Comedy,True
+The Rising of the Shield Hero Season 3,7.88,25,Studio Kimn,2023,Isekai,True
+The World God Only Knows,7.47,12,Manglobe,2010,Romance,True
+Durarara!!,8.06,24,Broad,2010,Action,True
+The iDOLM@STER,7.52,25,Sunrise,2011,Music,True
+A Certain Magical Index,7.98,24,J.C.Staff,2008,Fantasy,True
+A Certain Scientific Railgun,7.99,24,J.C.Staff,2009,Sci-Fi,True
+The Irregular at Magic High School,7.74,26,8bit,2014,Fantasy,True
+Date A Live,7.42,12,AIC Plus+,2013,Romance,True
+High School DxD,7.32,12,Triam,2012,Romance,True
+Charlotte,7.42,13,P.A.Works,2015,Drama,True
+Re:Zero - Starting Life in Another World Season 3,7.32,12,White Fox,2024,Isekai,True
+Overlord Season 4,7.56,12,Madhouse,2022,Isekai,True
+The Misfit of Demon King Academy,7.34,12,Silver Link,2020,Isekai,True
+The Saint's Magic Power is Omnipotent,7.12,12,Silver Link,2021,Isekai,True
+The World's Finest Assassin Gets Reincarnated in Another World as an Aristocrat,7.85,12,Sub,2021,Isekai,True
+That Time I Got Reincarnated as a Slime Season 3,7.67,24,8bit,2024,Isekai,True
+The Eminence in Shadow,7.92,24,Nexus,2022,Isekai,True
+My Next Life as a Villainess: All Routes Lead to Doom! Season 2,7.84,25,Subaru,2020,Isekai,True
+Ascendance of a Bookworm,8.12,24,Axel,2019,Isekai,True
+The Reincarnation of the Strongest Exorcist in Another World,7.45,12,Bridge,2022,Isekai,True
+The 100 Girlfriends Who Really Love You,7.23,12,Quad,2023,Romance,True
+My Home Hero,7.65,12,Subaru,2023,Thriller,True
+My Dress-Up Darling Season 2,8.15,12,Toy Box,2025,Romance,False
+Chainsaw Man Season 2,8.75,12,Mappa,2023,Action,True
+SPY x FAMILY,8.86,25,Wit Studio,2022,Comedy,True
+Spy x Family Season 2,8.95,25,Wit Studio,2023,Comedy,True
+My Hero Academia Season 7,8.12,25,Bones,2024,Action,True
+Jujutsu Kaisen Season 2,8.45,23,Mappa,2023,Action,True
+Demon Slayer Season 4,8.56,24,Ufotable,2023,Fantasy,True
+Oshi no Ko,8.91,11,Doga Kobo,2023,Drama,True
+My Clueless First Friend,7.84,12,Subaru Studio,2023,School,True
+The Yakuza's Guide to Babysitting,7.52,12,CloverWorks,2022,Comedy,True
+My Happy Marriage,7.45,12,Okuruto,2023,Romance,True
+The Executioner and Her Way of Life,7.68,12,C2C,2022,Fantasy,True

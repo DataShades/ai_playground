@@ -67,6 +67,19 @@ async def get_agent(
         + "\n",
         fg="blue",
     )
+
+    click.secho(
+        ""
+        "Ollama model settings:\n"
+        f"  Base URL: {Config.OLLAMA_BASE_URL}\n"
+        f"  Model: {Config.OLLAMA_MODEL}\n"
+        f"  Temperature: {Config.OLLAMA_TEMPERATURE}\n"
+        f"  Timeout: {Config.OLLAMA_TIMEOUT}\n"
+        f"  Thinking: {Config.OLLAMA_THINKING}\n"
+        f"  Context Window: {Config.OLLAMA_CONTEXT_WINDOW}\n",
+        fg="blue",
+    )
+
     return FunctionAgent(
         tools=available_tools,
         llm=Ollama(
