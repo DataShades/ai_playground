@@ -14,28 +14,64 @@ async def get_metadata_schema() -> dict[str, Any]:
     ALWAYS call this FIRST before generating metadata to ensure correct format.
 
     Returns:
-        dict[str, Any]: A dictionary representing the metadata schema.
+        dict[str, Any]: A JSON schema representing the metadata schema.
     """
     return {
-        "title": "string",
-        "notes": "string",
-        "publisher": {"name": "string", "email": "string"},
-        "tags": [{"name": "string"}],
-        "license": "string",
-        "organization": {"name": "string", "title": "string"},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "type": "object",
+        "properties": {
+            "title": {"type": "string"},
+            "notes": {"type": "string"},
+            "publisher": {
+                "type": ["object", "null"],
+                "properties": {"name": {"type": "string"}, "email": {"type": "string"}},
+                "required": ["name", "email"],
+            },
+            "tags": {
+                "type": "array",
+                "minItems": 1,
+                "items": {
+                    "type": "object",
+                    "properties": {"name": {"type": "string"}},
+                    "required": ["name"],
+                },
+            },
+            "license": {"type": ["string", "null"]},
+            "organization": {
+                "type": ["object", "null"],
+                "properties": {"name": {"type": "string"}, "title": {"type": "string"}},
+                "required": ["name", "title"],
+            },
+            "update_frequency": {
+                "type": ["string", "null"],
+                "enum": [
+                    "daily",
+                    "weekly",
+                    "monthly",
+                    "quarterly",
+                    "biennially",
+                    "biannually",
+                    "annually",
+                    "infrequently",
+                    "never",
+                ],
+            },
+            "language": {"type": ["string", "null"]},
+            "jurisdiction": {"type": ["string", "null"]},
+        },
+        "required": ["title", "notes", "tags"],
+        "additionalProperties": False,
     }
 
 
 @mcp.tool
-async def get_resource_data(name: str) -> dict[str, Any]:
+async def get_resource_data(filepath: str) -> dict[str, Any]:
     """Fetches data from a CSV file including columns and sample rows.
 
     Call this AFTER getting the schema to retrieve the actual file data.
 
     Args:
-        name: The filename to fetch data from
-    Args:
-        name (str): The name of the resource file (CSV).
+        filepath: The filename to fetch data from
 
     Returns:
         dict[str, Any]: A dictionary containing column names and a sample of the data.
@@ -47,11 +83,7 @@ async def get_resource_data(name: str) -> dict[str, Any]:
             "sample": "   id   name  value\n0   1  Alice    10\n1   2    Bob    20\n2   3  Carol    30"
         }
     """
-    if not name.endswith(".csv"):
-        name += ".csv"
-
-    file_path = Path(__file__) / "data" / name
-    df = pd.read_csv(file_path)
+    df = pd.read_csv(Path(filepath))
 
     return {
         "columns": df.columns.tolist(),

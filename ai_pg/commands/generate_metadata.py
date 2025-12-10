@@ -1,6 +1,7 @@
 import asyncio
 import time
 from functools import wraps
+from pathlib import Path
 
 import click
 from llama_index.core.agent import ReActAgent
@@ -33,9 +34,9 @@ def sync(func):
 
 
 @click.command(name="generate-metadata")
-@click.option("-f", "--filename", type=str, required=True)
+@click.option("-f", "--file", type=click.Path(exists=True), required=True)
 @sync
-async def generate_metadata(filename: str) -> None:
+async def generate_metadata(file: Path) -> None:
     """Generate dataset metadata using an agent with MCP tools."""
     mcp_client = BasicMCPClient(Config.MCP_CLIENT_URL)
     mcp_tools = McpToolSpec(client=mcp_client)
@@ -44,7 +45,7 @@ async def generate_metadata(filename: str) -> None:
     agent_context = Context(agent)
 
     user_input = (
-        f'Generate dataset metadata for "{filename}". '
+        f'Generate dataset metadata for "{file}". '
         "First check the metadata schema, then fetch the file data, "
         "and create metadata matching the schema."
     )
@@ -107,7 +108,6 @@ async def handle_user_message(
         message_content,
         ctx=agent_context,
         max_iterations=Config.AGENT_MAX_ITERATIONS,
-        # batch_size=10,  # Allow multiple tool calls in parallel if possible (allegedly, not confirmed)
     )
     async for event in handler.stream_events():
         if isinstance(event, ToolCall):
@@ -121,7 +121,7 @@ async def handle_user_message(
                 click.secho(
                     f"Tool {event.tool_name} completed in {elapsed:.2f} seconds \n"
                 )
-            # click.secho(f"Tool {event.tool_name} returned {event.tool_output} \n")
+            click.secho(f"Tool {event.tool_name} returned {event.tool_output} \n")
 
     try:
         response = await handler
