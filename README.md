@@ -47,8 +47,8 @@ This command starts the local MCP server located in `mcp_client/main.py`.
 
 This command queries the local Ollama LLM and the MCP server to generate metadata for a specific dataset file.
 
-**Note:** The file you specify must exist in the `data` folder.
+**Note:** The file you specify must exist in the `data` folder. You can also specify a file from your file system, but stick to the CSV format, as other formats are not yet supported.
 
 ```bash
-ai_pg generate-metadata -f titanic.csv
+ai_pg generate-metadata -f ./data/titanic.csv
 ```
