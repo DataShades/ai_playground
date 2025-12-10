@@ -10,24 +10,8 @@ from llama_index.llms.ollama import Ollama
 from llama_index.tools.mcp import BasicMCPClient, McpToolSpec
 from ollama import ResponseError
 
-OLLAMA_BASE_URL = "http://localhost:11434"
-OLLAMA_MODEL = "qwen3:8b"
-OLLAMA_TIMEOUT = 120.0  # Low timeout will lead to failed requests
-OLLAMA_THINKING = False
-# Temperature controls randomness of outputs
-# 0.0 is deterministic, 1.0 is creative
-OLLAMA_TEMPERATURE = 0.3
-# Default context_window is -1, that will try to infer from model info
-# For me it was 40960, which is too much
-# https://docs.ollama.com/context-length
-OLLAMA_CONTEXT_WINDOW = 4096
+from ai_pg.config import Config
 
-MCP_CLIENT_URL = "http://127.0.0.1:5337/sse"
-
-# Maximum iterations for the agent to prevent infinite loops
-# Default, giving more room for tool calls
-# Setting this value too low may lead to incomplete or failed responses
-AGENT_MAX_ITERATIONS = 20
 
 SYSTEM_PROMPT = [
     "Generate dataset metadata following these steps:",
@@ -53,7 +37,7 @@ def sync(func):
 @sync
 async def generate_metadata(filename: str) -> None:
     """Generate dataset metadata using an agent with MCP tools."""
-    mcp_client = BasicMCPClient(MCP_CLIENT_URL)
+    mcp_client = BasicMCPClient(Config.MCP_CLIENT_URL)
     mcp_tools = McpToolSpec(client=mcp_client)
 
     agent = await get_agent(mcp_tools, SYSTEM_PROMPT)
@@ -86,12 +70,12 @@ async def get_agent(
     return FunctionAgent(
         tools=available_tools,
         llm=Ollama(
-            base_url=OLLAMA_BASE_URL,
-            model=OLLAMA_MODEL,
-            context_window=OLLAMA_CONTEXT_WINDOW,
-            request_timeout=OLLAMA_TIMEOUT,
-            thinking=OLLAMA_THINKING,
-            temperature=OLLAMA_TEMPERATURE,
+            base_url=Config.OLLAMA_BASE_URL,
+            model=Config.OLLAMA_MODEL,
+            context_window=Config.OLLAMA_CONTEXT_WINDOW,
+            request_timeout=Config.OLLAMA_TIMEOUT,
+            thinking=Config.OLLAMA_THINKING,
+            temperature=Config.OLLAMA_TEMPERATURE,
         ),
         system_prompt="\n".join(system_prompt),
     )
@@ -109,7 +93,7 @@ async def handle_user_message(
     handler = agent.run(
         message_content,
         ctx=agent_context,
-        max_iterations=AGENT_MAX_ITERATIONS,
+        max_iterations=Config.AGENT_MAX_ITERATIONS,
         # batch_size=10,  # Allow multiple tool calls in parallel if possible (allegedly, not confirmed)
     )
     async for event in handler.stream_events():
