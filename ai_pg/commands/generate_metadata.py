@@ -121,7 +121,8 @@ async def handle_user_message(
                 click.secho(
                     f"Tool {event.tool_name} completed in {elapsed:.2f} seconds \n"
                 )
-            click.secho(f"Tool {event.tool_name} returned {event.tool_output} \n")
+            # Uncomment to debug tool outputs
+            # click.secho(f"Tool {event.tool_name} returned {event.tool_output} \n")
 
     try:
         response = await handler
