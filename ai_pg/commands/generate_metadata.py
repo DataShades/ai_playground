@@ -4,12 +4,13 @@ from functools import wraps
 from pathlib import Path
 
 import click
-from llama_index.core.agent import ReActAgent
 from llama_index.core.agent.workflow import FunctionAgent, ToolCall, ToolCallResult
 from llama_index.core.workflow import Context, WorkflowRuntimeError
 from llama_index.llms.ollama import Ollama
 from llama_index.tools.mcp import BasicMCPClient, McpToolSpec
+from llama_index.core.tools.function_tool import FunctionTool
 from ollama import ResponseError
+from httpx import ConnectError as HttpxConnectError
 
 from ai_pg.config import Config
 
@@ -41,7 +42,14 @@ async def generate_metadata(file: Path) -> None:
     mcp_client = BasicMCPClient(Config.MCP_CLIENT_URL)
     mcp_tools = McpToolSpec(client=mcp_client)
 
-    agent = await get_agent(mcp_tools, SYSTEM_PROMPT)
+    try:
+        tools = await mcp_tools.to_tool_list_async()
+    except Exception:
+        return click.secho(
+            "Failed to create MCP tools. Please check the MCP client URL.", fg="red"
+        )
+
+    agent = await get_agent(tools, SYSTEM_PROMPT)
     agent_context = Context(agent)
 
     user_input = (
@@ -50,21 +58,24 @@ async def generate_metadata(file: Path) -> None:
         "and create metadata matching the schema."
     )
 
-    response = await handle_user_message(user_input, agent, agent_context)
+    try:
+        response = await handle_user_message(user_input, agent, agent_context)
+    except HttpxConnectError:
+        return click.secho(
+            "Failed to connect to Ollama model. Please check the Ollama base URL.",
+            fg="red",
+        )
 
     click.secho(response, fg="green")
 
 
 async def get_agent(
-    tools: McpToolSpec, system_prompt: list[str]
-) -> FunctionAgent | ReActAgent:
-    available_tools = await tools.to_tool_list_async()
+    tools: list[FunctionTool], system_prompt: list[str]
+) -> FunctionAgent:
 
     click.secho(
         "Creating agent with available tools: "
-        + ", ".join(
-            tool.metadata.name or str(tool.metadata) for tool in available_tools
-        )
+        + ", ".join(tool.metadata.name or str(tool.metadata) for tool in tools)
         + "\n",
         fg="blue",
     )
@@ -82,7 +93,7 @@ async def get_agent(
     )
 
     return FunctionAgent(
-        tools=available_tools,
+        tools=tools,
         llm=Ollama(
             base_url=Config.OLLAMA_BASE_URL,
             model=Config.OLLAMA_MODEL,
@@ -97,7 +108,7 @@ async def get_agent(
 
 async def handle_user_message(
     message_content: str,
-    agent: FunctionAgent | ReActAgent,
+    agent: FunctionAgent,
     agent_context: Context,
 ):
     click.secho(f"Handling user message: {message_content} \n", fg="yellow")

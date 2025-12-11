@@ -12,6 +12,8 @@ dependencies = [
     "llama-index-core",
     "llama-index-llms-ollama",
     "llama-index-tools-mcp",
+    "llama-index-vector-stores-postgres",
+    "llama-index-embeddings-ollama",
     "click",
     "fastmcp",
     "pandas"

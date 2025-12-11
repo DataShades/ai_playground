@@ -52,3 +52,35 @@ This command queries the local Ollama LLM and the MCP server to generate metadat
 ```bash
 ai_pg generate-metadata -f ./data/titanic.csv
 ```
+
+## RAG (Retrieval-Augmented Generation)
+
+RAG related commands:
+### 1. RAG Index documents
+
+This one indexes all documents in the `data` folder to the postgres. See the config.py for the configuration of the database and embedding model.
+
+### 2. RAG Index document
+
+To index a specific document, run:
+
+```bash
+ai_pg rag index-document titanic.csv
+```
+This is a simple way to re-index a document if it has been updated.
+
+### 3. RAG Query
+To query the indexed documents, run:
+
+```bash
+ai_pg rag query-index "Who is Mr. Owen Harris Braund?"
+
+Mr. Owen Harris Braund is a male passenger who was 22 years old and traveled in
+the third class on the Titanic. He was listed as a crew member (indicated by the
+value 1 in the third column), and his ticket class was A/5 21171, with a fare of
+7.25. He embarked from Southampton (S).
+```
+
+## Configuration
+
+You can configure the Ollama model, MCP server and other things using environment variables. See the [config.py](./ai_pg/config.py) file for default settings.
